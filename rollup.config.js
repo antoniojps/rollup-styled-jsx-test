@@ -17,16 +17,16 @@ function changeExtension(file, extension) {
 
 const extensions = [".js", ".jsx", ".ts", ".tsx"];
 const plugins = [
-  typescript({
-    check: false,
-    useTsconfigDeclarationDir: true,
-    tsconfigOverride: {
-      compilerOptions: {
-        allowJs: false,
-        declaration: true,
-      },
-    },
-  }),
+  // typescript({
+  //   check: false,
+  //   useTsconfigDeclarationDir: true,
+  //   tsconfigOverride: {
+  //     compilerOptions: {
+  //       allowJs: false,
+  //       declaration: true,
+  //     },
+  //   },
+  // }),
   babel({
     exclude: /node_modules/,
     extensions,
