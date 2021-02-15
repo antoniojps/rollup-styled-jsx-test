@@ -5,15 +5,36 @@ import localResolve from "rollup-plugin-local-resolve";
 import fs from "fs-extra";
 import walk from "klaw-sync";
 import path from "path";
+import typescript from "rollup-plugin-typescript2";
+
 const componentsPath = path.join(__dirname, "src");
-const distPath = path.join(__dirname, "dist");
+const distPath = path.join(__dirname, "bundle");
+
+function changeExtension(file, extension) {
+  const basename = path.basename(file, path.extname(file));
+  return path.join(path.dirname(file), basename + extension);
+}
 
 const extensions = [".js", ".jsx", ".ts", ".tsx"];
 const plugins = [
+  typescript({
+    check: false,
+    useTsconfigDeclarationDir: true,
+    tsconfigOverride: {
+      compilerOptions: {
+        allowJs: false,
+        declaration: true,
+      },
+    },
+  }),
   babel({
     exclude: /node_modules/,
     extensions,
-    presets: ["@babel/preset-env", "@babel/preset-react"],
+    presets: [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript",
+    ],
     plugins: [["styled-jsx/babel", { plugins: ["styled-jsx-plugin-sass"] }]],
   }),
   localResolve(),
@@ -51,7 +72,7 @@ export default (async () => {
       input: url,
       output: [
         {
-          file: url.replace(/src/, "dist"),
+          file: changeExtension(url.replace(/src/, "bundle/esm"), ".js"),
           format: "cjs",
           exports: "named",
           globals,
