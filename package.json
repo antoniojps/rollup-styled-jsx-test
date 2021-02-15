@@ -1,5 +1,5 @@
 {
-  "name": "rollup-styled-jsx",
+  "name": "test-styled-jsx-package",
   "version": "0.0.1",
   "description": "components library with rollup and styled-jsx",
   "main": "index.js",
@@ -31,14 +31,17 @@
     "@storybook/addons": "^6.0.22",
     "@storybook/react": "^6.0.22",
     "babel-loader": "^8.1.0",
+    "fs-extra": "^9.1.0",
+    "klaw-sync": "^6.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "rollup": "^2.28.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
-    "styled-jsx": "^3.3.0",
+    "styled-jsx": "3.2.5",
     "styled-jsx-plugin-sass": "^1.0.0"
   },
   "peerDependencies": {
